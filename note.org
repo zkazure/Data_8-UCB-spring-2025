@@ -1,0 +1,11 @@
+#+title: Note: Data8-UCB-spring-2025
+
+* What is Data Science
+
+Drawing useful conclusions from large and diverse data sets.
+
+- exploration: identifying the patterns in information
+- Prediction: make informed guesses. 
+- Interference: quantifying our degree of certainty.
+
+
