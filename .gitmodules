@@ -1,0 +1,3 @@
+[submodule "materials-sp25"]
+	path = materials-sp25
+	url = https://github.com/data-8/materials-sp25.git
