@@ -1,0 +1,27 @@
+#+title: Labs: Data8 Foundations of Data Science
+
+* Lab 1
+
+** how to use jupyter-books
+
+*** Problem
+
+there is a problem: you can not install the *otter* package, but you can
+install *otter-grader* instead.
+
+
+*** hotkeys
+:PROPERTIES:
+:ID:       824d9055-8a71-4c7a-a550-3ca562d8bf6d
+:END:
+
+
+#+DOWNLOADED: screenshot @ 2025-07-09 12:42:14
+[[file:img/2025-07-09_12-42-14_screenshot.png]]
+
+** How to use python
+
+- max
+- min
+- abs
+
