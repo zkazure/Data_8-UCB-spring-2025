@@ -154,6 +154,75 @@ too small to be zero.
 : [0 2 4 6 8]
 
 
+* Tables
+:PROPERTIES:
+:HEADER-ARGS: :python :prologue "from datascience import *"
+:END:
+
+
+
+** Sorting Rows
+
+#+begin_src python 
+  file_path = "./materials-sp25/lec/lec06/nba_salaries.csv"
+  nba_salaries = Table.read_table(file_path)
+  print(nba_salaries.relabeled("salary", "SALARY").sort('SALARY', descending=True))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+rank | name              | position | team                  | SALARY   | season
+1    | Stephen Curry     | PG       | Golden State Warriors | 40231758 | 2020
+2    | Chris Paul        | PG       | Oklahoma City Thunder | 38506482 | 2020
+3    | Russell Westbrook | PG       | Houston Rockets       | 38506482 | 2020
+4    | John Wall         | PG       | Washington Wizards    | 38199000 | 2020
+5    | Kevin Durant      | SF       | Brooklyn Nets         | 38199000 | 2020
+6    | James Harden      | SG       | Houston Rockets       | 38199000 | 2020
+1    | Stephen Curry     | PG       | Golden State Warriors | 37457154 | 2018
+1    | Stephen Curry     | PG       | Golden State Warriors | 37457154 | 2019
+7    | LeBron James      | SF       | Los Angeles Lakers    | 37436858 | 2020
+2    | Chris Paul        | PG       | Houston Rockets       | 35654150 | 2019
+... (9446 rows omitted)
+#+end_example
+
+** Selecting Rows
+
+#+begin_src python 
+  import numpy as np
+  file_path = "./materials-sp25/lec/lec06/nba_salaries.csv"
+  nba = Table.read_table(file_path)
+
+  print(nba.take(0))
+  print()
+
+  print(nba.take(np.arange(3,6)))
+  print()
+
+  print(nba.where('salary', are.above(10)).take(np.arange(1,3)))
+  print()
+
+  print(nba.where('name', are.equal_to('Stephen Curry')).where('season', are.equal_to(2010)))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+rank | name             | position | team               | salary   | season
+1    | Shaquille O'Neal | C        | Los Angeles Lakers | 17142000 | 2000
+
+rank | name           | position | team                   | salary   | season
+4    | Juwan Howard   | PF       | Washington Wizards     | 15000000 | 2000
+5    | Scottie Pippen | SF       | Portland Trail Blazers | 14795000 | 2000
+6    | Karl Malone    | PF       | Utah Jazz              | 14000000 | 2000
+
+rank | name            | position | team                   | salary   | season
+2    | Kevin Garnett   | PF       | Minnesota Timberwolves | 16806000 | 2000
+3    | Alonzo Mourning | C        | Miami Heat             | 15004000 | 2000
+
+rank | name          | position | team                  | salary  | season
+227  | Stephen Curry | PG       | Golden State Warriors | 2710560 | 2010
+#+end_example
+
+
 * Local Variable
 
 # Local Variables:
