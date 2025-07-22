@@ -3,3 +3,159 @@
 * lecture 01
 
 nothing important
+
+
+* unrecorded
+
+* unrecorded
+
+* Data Types
+
+** numbers
+
+*** type
+convert to float after division. 
+#+begin_src python
+  print(type(3))
+  print(type(3/1))
+  print(type(3*1))
+#+end_src
+
+#+RESULTS:
+: <class 'int'>
+: <class 'float'>
+: <class 'int'>
+
+*** limit of float number
+
+too large to be inf,
+too small to be zero. 
+
+#+begin_src python
+  print(2e306 * 100)
+  print(2e-322 / 100)
+#+end_src
+
+#+RESULTS:
+: inf
+: 0.0
+
+** Strings
+
+*** connect
+
+#+begin_src python
+  st = "data" + " " + "science"
+  print(st)
+#+end_src
+
+#+RESULTS:
+: data science
+
+
+*** str function
+
+#+begin_src python
+  st = "That's " + str(1+1) + ' ' + str(True)
+  print(st)
+#+end_src
+
+#+RESULTS:
+: That's 2 True
+
+
+*** More Methods
+
+**** upper and lower
+
+#+begin_src python 
+  print("upper".upper())
+  print("UPPER".lower())  
+#+end_src
+
+#+RESULTS:
+: UPPER
+: upper
+
+
+**** replace
+
+#+begin_src python
+  print("hit!!!".replace('hit', 'miss'))
+#+end_src
+
+#+RESULTS:
+: miss!!!
+
+* Sequences
+** Arrays
+
+*** datascience
+#+begin_src python
+  words = make_array("Hello", "World", "!")
+  print(words)
+  print()
+
+  print(words + "plus")
+  print()
+
+  print(words.size)
+#+end_src
+
+#+RESULTS:
+: ['Hello' 'World' '!']
+: 
+: ['Helloplus' 'Worldplus' '!plus']
+: 
+: 3
+
+*** numpy
+:PROPERTIES:
+:ID:       29d7c0ee-7851-4f76-bd49-ab20b9569bb9
+:END:
+
+#+begin_src python
+  import numpy as np
+
+  n = make_array(0, 1, 2, 3, 4)
+  print(np.diff(n)) # right - left
+#+end_src
+
+#+RESULTS:
+: [1 1 1 1]
+
+
+#+DOWNLOADED: screenshot @ 2025-07-22 23:49:08
+[[file:img/2025-07-22_23-49-08_screenshot.png]]
+
+
+
+#+DOWNLOADED: screenshot @ 2025-07-22 23:49:25
+[[file:img/2025-07-22_23-49-25_screenshot.png]]
+
+
+
+#+DOWNLOADED: screenshot @ 2025-07-22 23:49:39
+[[file:img/2025-07-22_23-49-39_screenshot.png]]
+
+
+*** ranges
+
+#+begin_src python
+  import numpy as np
+  print(np.arange(5))
+  print(np.arange(5, 10))
+  print(np.arange(0, 10 , 2))
+#+end_src
+
+#+RESULTS:
+: [0 1 2 3 4]
+: [5 6 7 8 9]
+: [0 2 4 6 8]
+
+
+* Local Variable
+
+# Local Variables:
+# org-babel-python-command: "./materials-sp25/.venv/bin/python"
+# End:
