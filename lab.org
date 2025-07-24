@@ -264,6 +264,197 @@ delete the specific column.
   print("Proportion in 21st century:", proportion_in_21st_century)
 #+end_src
 
+* Data Types and Arrays
+
+** q11
+#+begin_src python 
+  woman_asking = 'The woman asked:'
+  woman_quote = '"Can it be that you have come from outer space?"'
+  gagarin_reply = 'Gagarin replied:'
+  gagarin_quote = '"As a matter of fact, I have!"'
+
+  print(woman_asking, woman_quote)
+  print(gagarin_reply, gagarin_quote)
+#+end_src
+
+~print~ function will add whitespace between variable automatically. 
+
+** q111
+#+begin_src python 
+  new_word = 'hitchhiker'.replace('hi','ma')
+  new_word
+#+end_src
+
+
+** q121
+#+begin_src python 
+  # Some text data:
+  one_year = "1618"
+  another_year = "1648"
+
+  # Complete the next line.  Note that we can't just write:
+  #   another_year - one_year
+  # If you don't see why, try seeing what happens when you
+  # write that here.
+  difference = int(another_year) - int(one_year)
+  difference
+#+end_src
+
+type conversion. 
+
+** q131
+
+#+begin_src python 
+  a_very_long_sentence = "The representatives of the French people, organized as a National Assembly, believing that the ignorance, neglect, or contempt of the rights of man are the sole cause of public calamities and of the corruption of governments, have determined to set forth in a solemn declaration the natural, unalienable, and sacred rights of man, in order that this declaration, being constantly before all the members of the Social body, shall remind them continually of their rights and duties; in order that the acts of the legislative power, as well as those of the executive power, may be compared at any moment with the objects and purposes of all political institutions and may thus be more respected, and, lastly, in order that the grievances of the citizens, based hereafter upon simple and incontestable principles, shall tend to the maintenance of the constitution and redound to the happiness of all."
+  
+  sentence_length = len(a_very_long_sentence)
+  sentence_length
+#+end_src
+
+
+** q211
+#+begin_src python 
+  import math
+
+  interesting_numbers = make_array(0, 1, -1, math.pi)
+  interesting_numbers
+#+end_src
+
+
+** q212
+#+begin_src python 
+  hello_world_components = make_array("Hello", ",", " ", "world", "!")
+  hello_world_components
+#+end_src
+
+
+** q213
+#+begin_src python 
+
+  multiples_of_99 = np.arange(0, 10000, 99)
+  multiples_of_99
+#+end_src
+
+
+** q221
+#+begin_src python 
+  population_1973 = population_amounts.item(1973-1950)
+  population_1973
+#+end_src
+
+
+** q231
+
+#+begin_src python 
+  population_rounded = np.round(population_amounts, -6)
+  population_rounded
+#+end_src
+
+~round~ 计算数量级
+
+** q31
+
+#+begin_src python 
+  top_10_movie_names = make_array(
+          'The Shawshank Redemption (1994)',
+          'The Godfather (1972)',
+          'The Godfather: Part II (1974)',
+          'Pulp Fiction (1994)',
+          "Schindler's List (1993)",
+          'The Lord of the Rings: The Return of the King (2003)',
+          '12 Angry Men (1957)',
+          'The Dark Knight (2008)',
+          'Il buono, il brutto, il cattivo (1966)',
+          'The Lord of the Rings: The Fellowship of the Ring (2001)')
+  top_10_movie_ratings = make_array(9.2, 9.2, 9., 8.9, 8.9, 8.9, 8.9, 8.9, 8.9, 8.8)
+
+  top_10_movies = Table().with_columns(
+      "Name", top_10_movie_names,
+      "Rating", top_10_movie_ratings
+  )
+
+  # We've put this next line here 
+  # so your table will get printed out 
+  # when you run this cell.
+  top_10_movies
+#+end_src
+
+
+** q32
+#+begin_src python 
+  imdb = Table.read_table("imdb.csv")
+  imdb
+#+end_src
+
+
+** q41
+#+begin_src python 
+  year_population_crossed_6_billion = population.where('Population', are.above(6000000000)).column('Year').item(0)
+  year_population_crossed_6_billion
+#+end_src
+
+
+** q42
+#+begin_src python 
+  before_2000 = imdb.where('Year', are.below(2000))
+  after_or_in_2000 = imdb.where('Year', are.above(1999))
+  before_2000_avg = before_2000.column('Rating').sum()/len(before_2000.column('Year'))
+  after_or_in_2000_avg = after_or_in_2000.column('Rating').sum()/len(after_or_in_2000.column('Year'))
+  print("Average before 2000 rating:", before_2000_avg)
+  print("Average after or in 2000 rating:", after_or_in_2000_avg)
+#+end_src
+
+
+** q43
+
+#+begin_src python 
+  even_or_odd = imdb.with_columns(
+      'even', imdb.column('Year') % 2
+  )
+  num_even_year_movies = len(even_or_odd.where('even', are.equal_to(0)).column('Year'))
+  num_even_year_movies
+
+#+end_src
+
+
+** q51
+#+begin_src python 
+  collection_times = np.arange(0, 31*24*60*60, 60*60)
+  collection_times
+#+end_src
+
+
+** q521
+#+begin_src python 
+  total_charges = restaurant_bills + tips
+  total_charges
+#+end_src
+
+
+** q522
+#+begin_src python 
+  more_restaurant_bills = Table.read_table("more_restaurant_bills.csv").column("Bill")
+  more_total_charges = 1.2 * more_restaurant_bills
+  more_total_charges
+#+end_src
+
+
+** q523
+
+#+begin_src python 
+  sum_of_bills = sum(more_total_charges)
+  sum_of_bills
+#+end_src
+
+
+** q524
+#+begin_src python 
+  num = np.arange(0, 30)
+  powers_of_2 = 2 ** num
+  powers_of_2
+#+end_src
+
+
 * COMMENT Local Variables
 
 # Local Variables:
