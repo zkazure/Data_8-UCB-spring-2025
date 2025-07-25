@@ -153,6 +153,185 @@
 #+end_src
 
 
+* Table Manipulation and Visualization
+
+** Question 1
+*** q1_1
+#+begin_src python 
+  us_birth_rate = sum(pop.column('BIRTHS')) / sum(pop.column('2015'))
+  us_birth_rate
+#+end_src
+
+*** q1_2
+#+begin_src python 
+  migration_rates = pop.with_columns(
+      'migration_rate', pop.column('MIGRATION') / pop.column('2015')
+  )
+  movers = len(migration_rates.where('migration_rate', are.above(0.01)).column('NAME'))
+  movers
+#+end_src
+
+
+*** q1_3
+#+begin_src python 
+  west_births = pop.where('REGION', are.equal_to(4)).column('BIRTHS').sum()
+  west_births
+#+end_src
+
+
+*** q1_4
+#+begin_src python 
+  visualization = 3
+#+end_src
+
+
+*** q1_5
+#+begin_src python 
+  # In this cell, use birth_rates and death_rates to generate your visualization
+  birth_rates_2015 = pop.column('BIRTHS') / pop.column('2015')
+  death_rates_2015 = pop.column('DEATHS') / pop.column('2015')
+
+  birth_death = Table().with_columns(
+      'NAME', pop.column('NAME'),
+      'birth_rates', birth_rates_2015,
+      'death_rates', death_rates_2015
+  )
+
+  birth_death.scatter('NAME')
+  birth_death.plot('NAME')
+#+end_src
+
+
+*** q1_6
+#+begin_src python 
+  assoc = True
+#+end_src
+
+** Question 2
+
+*** q2_1
+#+begin_src python
+  equal_bins = np.arange(0, 120, 5)
+
+  boston.hist('ride time', bins=equal_bins, unit="hours")
+#+end_src
+
+
+*** q2_2
+#+begin_src python 
+  equal_bins = np.arange(0, 120, 5)
+  manila.hist('ride time', bins=equal_bins, unit="hours")
+
+  # Don't delete the following line!
+  plt.ylim(0, 0.05);
+#+end_src
+
+
+*** q2_3
+#+begin_src python 
+  unit_meaning = 1
+  unit_meaning
+#+end_src
+
+
+*** q2_4
+#+begin_src python 
+  boston_under_5_bin_height = 1.2
+  manila_under_5_bin_height = 0.6
+  boston_5_to_under_10_bin_height = 3.2
+  manila_5_to_under_10_bin_height = 1.4
+  boston_10_to_under_15_bin_height = 4.9
+  manila_10_to_under_15_bin_height = 2.2
+
+  boston_under_15 = boston_under_5_bin_height + boston_5_to_under_10_bin_height + boston_10_to_under_15_bin_height
+  manila_under_15 = manila_under_5_bin_height + manila_5_to_under_10_bin_height + manila_10_to_under_15_bin_height
+
+
+  boston_under_15, manila_under_15
+#+end_src
+
+
+*** q2_5
+#+begin_src  python 
+  boston_median_bin = 2
+  boston_median_bin
+#+end_src
+
+
+** Question 3
+
+*** q3_1
+#+begin_src python 
+  histogram_column_x = 1
+#+end_src
+
+*** q3_3
+#+begin_src python 
+  histogram_column_y = 2
+#+end_src
+
+** Question 4
+
+*** q4_1
+#+begin_src python 
+  def sum_scores(a, b, c, d):
+      '''Returns the total score calculated by adding up the score of each quarter'''
+      return a+b+c+d
+
+  sum_scores(14, 7, 3, 0) #DO NOT CHANGE THIS LINE
+#+end_src
+
+
+*** q4_2
+#+begin_src python
+  cal_scores = sum_scores(games.column('Cal 1Q'), games.column('Cal 2Q'), games.column('Cal 3Q'), games.column('Cal 4Q'))
+
+  opp_scores = sum_scores(games.column('Opp 1Q'), games.column('Opp 2Q'), games.column('Opp 3Q'), games.column('Opp 4Q'))
+
+  final_scores = Table().with_columns(
+      'Opponent', games.column('Opponent'),
+      'Cal Score', cal_scores,
+      'Opponent Score', opp_scores
+  )
+
+  final_scores
+#+end_src
+
+
+*** q4_3
+#+begin_src python
+  def did_cal_lose(game_row):
+      if (game_row.item(1) < game_row.item(2)):
+          return True
+      else:
+          return False
+
+
+  did_cal_lose(final_scores.row(1)) #DO NOT CHANGE THIS LINE
+#+end_src
+
+
+*** q4_4
+#+begin_src python 
+  n = len(final_scores.column('Opponent'))
+  results_array = np.arange(n)
+
+  for i in range(n):
+      results_array[i] = did_cal_lose(final_scores.row(i))
+
+  final_scores_with_results = final_scores.with_columns(
+      'Results', results_array
+  )
+
+  cal_losses = len(final_scores_with_results.where('Results', 0).column('Opponent'))
+  cal_wins = len(final_scores_with_results.where('Results', 1).column('Opponent'))
+
+
+  # Don't delete or edit the following line:
+  print(f"In the 2023 Season, Cal Football won {cal_wins} games and lost {cal_losses} games. Go Bears! 🐻")
+#+end_src
+
+
 * Local Variables
 
 # Local Variables:
