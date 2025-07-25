@@ -224,6 +224,73 @@ rank | name          | position | team                  | salary  | season
 #+end_example
 
 
+* Visualization
+
+** Scatter Plots and Line Graphs
+
+#+begin_src python 
+  table.scatter('x_label', 'y_label')
+  table.plot('x_label', 'y_label')
+#+end_src
+
+
+** Categorical Distributions
+
+*** Bar Chart
+:PROPERTIES:
+:ID:       2ab5b7ec-fa1d-4c75-b39a-269038d9a30a
+:END:
+#+begin_src python 
+  table.barh('y_label', 'x_label')
+#+end_src
+
+
+#+DOWNLOADED: screenshot @ 2025-07-25 18:33:57
+[[file:img/2025-07-25_18-33-57_screenshot.png]]
+
+
+*** Grouping Categorical Data
+:PROPERTIES:
+:ID:       bcd2801d-7d6f-4539-8cc3-ca27e35fce7e
+:END:
+
+#+begin_src python 
+  table.group('label')
+#+end_src
+
+it will calculate the appear times of correspond labels.
+
+
+#+DOWNLOADED: screenshot @ 2025-07-25 18:36:35
+[[file:img/2025-07-25_18-36-35_screenshot.png]]
+
+
+
+** Numerical Distribution
+
+
+
+*** histogram
+
+#+begin_src python 
+  table.hist('x_label', unit="unit")
+
+  table.hist('x_label', bins=np.arange(...), unit="...")
+#+end_src
+
+
+** Overlaid Graphs
+
+create a table with 3 columns.
+
+#+begin_src python
+  table.scatter('column')
+  table.plot('column')
+  table.barh('column') # excepte bar
+#+end_src
+
+it will give you connection between targeted variable and other variables.
+
 * Local Variable
 
 # Local Variables:
